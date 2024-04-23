@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3al8nlv3m2ry"]
+
+[ext_resource type="Script" path="res://CollisionShape3D.gd" id="1_c5irj"]
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_opvis"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kigka"]
+size = Vector3(2.83154, 1, 1.63721)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_raflg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dhnhn"]
+radius = 0.505686
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ccm2u"]
+
+[sub_resource type="Sky" id="Sky_4ybu8"]
+
+[sub_resource type="Environment" id="Environment_snywv"]
+background_mode = 1
+background_color = Color(1, 0.560784, 0.223529, 1)
+sky = SubResource("Sky_4ybu8")
+sky_custom_fov = 180.0
+ambient_light_source = 2
+ambient_light_color = Color(0.188235, 0.384314, 0.756863, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0692257, -0.859851, 0.318604)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_kigka")
+script = ExtResource("1_c5irj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000732422, 0, -0.00158691)
+use_collision = true
+size = Vector3(2.82275, 1, 1.6272)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.53194, -3.09063)
+light_color = Color(0, 1, 1, 1)
+light_energy = 9.566
+omni_range = 100.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.937949, 0.346772, 0, -0.346772, 0.937949, 0, 0.766145, 4.12835)
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0461369, -0.864505, -3.32917)
+disable_mode = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000732422, 0, -0.00158691)
+use_collision = true
+size = Vector3(2.82275, 1, 1.6272)
+material = SubResource("StandardMaterial3D_raflg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("BoxShape3D_kigka")
+script = ExtResource("1_c5irj")
+
+[node name="Area3D3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0692257, -0.859851, -6.94823)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D3"]
+shape = SubResource("BoxShape3D_kigka")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000732422, 0, -0.00158691)
+use_collision = true
+size = Vector3(2.82275, 1, 1.6272)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373316, 0)
+script = ExtResource("1_opvis")
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80772, 0)
+shape = SubResource("CapsuleShape3D_dhnhn")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783425, 0)
+mesh = SubResource("CapsuleMesh_ccm2u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_snywv")
